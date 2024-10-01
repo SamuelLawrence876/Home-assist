@@ -1,0 +1,32 @@
+turn_on_govee_heater:
+  alias: Turn On Govee Heater
+  sequence:
+    - action: rest_command.govee_heater_control
+      data:
+        device: "8D:C7:60:74:F4:9D:0D:9E" # Your device ID
+        model: "H713B"
+        cmd_name: "turn"
+        cmd_value: "on"
+  mode: single
+
+turn_off_govee_heater:
+  alias: Turn Off Govee Heater
+  sequence:
+    - action: rest_command.govee_heater_control
+      data:
+        device: "8D:C7:60:74:F4:9D:0D:9E" # Your device ID
+        model: "H713B"
+        cmd_name: "turn"
+        cmd_value: "off"
+  mode: single
+
+set_govee_heater_temperature:
+  alias: Set Govee Heater Temperature
+  sequence:
+    - action: rest_command.govee_heater_control
+      data:
+        device: '8D:C7:60:74:F4:9D:0D:9E'
+        model: 'H713B'
+        cmd_name: 'temperature'
+        cmd_value: "{{ states('input_number.govee_heater_temperature') | int }}"
+  mode: single

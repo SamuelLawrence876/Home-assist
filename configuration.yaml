@@ -1,4 +1,3 @@
-
 # Loads default set of integrations. Do not remove.
 default_config:
 
@@ -9,3 +8,28 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+rest_command:
+  govee_heater_control:
+    url: "https://developer-api.govee.com/v1/appliance/devices/control"
+    method: PUT
+    headers:
+      Govee-API-Key: !secret govee_api_key
+      Content-Type: "application/json"
+    payload: >
+      {
+        "device": "{{ device }}",
+        "model": "{{ model }}",
+        "cmd": {
+          "name": "{{ cmd_name }}",
+          "value": "{{ cmd_value }}"
+        }
+      }
+input_number:
+  govee_heater_temperature:
+    name: Govee Heater Temperature
+    initial: 20
+    min: 15
+    max: 30
+    step: 1
+    unit_of_measurement: "°C"

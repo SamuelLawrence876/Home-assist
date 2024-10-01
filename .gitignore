@@ -2,3 +2,4 @@ custom_components/
 .storage/
 *.log
 *.db
+secrets.yaml
